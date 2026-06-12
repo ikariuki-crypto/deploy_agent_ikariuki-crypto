@@ -1,6 +1,6 @@
  Student Attendance Project Setup Guide
 
-This project contains an automated tool (setup_project.sh) that builds a workspace folder for tracking student attendance, configures custom scoring rules, and automatically checks for failing students.
+This project contains an automated tool (setup_project.sh) that builds a workspace folder for tracking student attendance, configures custom, scoring rules, and automatically checks for failing students.
 
 Follow these simple steps to run it on your machine.
 
