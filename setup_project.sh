@@ -70,3 +70,29 @@ fail_input=${fail_input:-50}
 sed -i "s/\"Warning\": [0-9]*/\"Warning\": ${warn_input}/" "attendance_tracker_${user_input}/Helpers/config.json"
 sed -i "s/\"Failure\": [0-9]*/\"Failure\": ${fail_input}/" "attendance_tracker_${user_input}/Helpers/config.json"
 echo "Phase 3 complete: Configuration thresholds updated successfully!"
+
+# ===========================================
+# PHASE 4: Data validation (awk)
+# ===========================================
+echo "Executing data validation suite..."
+
+# Define paths to our source data and target log file
+CSV_FILE="attendance_tracker_${user_input}/Helpers/assets.csv"
+LOG_FILE="attendance_tracker_${user_input}/reports/reports.log"
+
+# Run awk to process the student data columns
+awk -F',' -v warn="$warn_input" -v fail="$fail_input" '
+    NR > 1 {
+        id = $1
+        name = $2
+        pct = $3
+        
+        if (pct < fail) {
+            print "[CRITICAL] Student " name " (" id ") dropped to " pct "% (Below Failure Limit of " fail "%)"
+        } else if (pct < warn) {
+            print "[WARNING] Student " name " (" id ") dropped to " pct "% (Below Warning Limit of " warn "%)"
+        }
+    }
+' "$CSV_FILE" > "$LOG_FILE"
+
+echo "Phase 4 complete: Alerts compiled into reports/reports.log successfully!"
