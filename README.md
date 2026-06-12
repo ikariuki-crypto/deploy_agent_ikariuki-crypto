@@ -29,7 +29,9 @@ Now you are ready to start the automated setup! Type this command into your term
 
 Bash
 ./setup_project.sh
+
 What to do when the script asks you questions:
+
 Enter a suffix name: Type a short word or version number (like final or v3) and press Enter. This names your new folder.
 
 Enter Warning threshold: Type a number (like 80) and press Enter. This sets the warning percentage for attendance.
@@ -47,4 +49,5 @@ Instead of crashing, the script will catch this signal, stop gracefully, and cle
 Once the script finishes completely, it will automatically create an audit report for you. To read the report and see which students dropped below your chosen thresholds, run this command:
 
 Bash
+
 cat attendance_tracker_final/reports/reports.log
