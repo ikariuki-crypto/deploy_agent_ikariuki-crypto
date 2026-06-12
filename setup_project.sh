@@ -20,6 +20,26 @@ mkdir -p "attendance_tracker_${user_input}/reports"
 mkdir -p "attendance_tracker_${user_input}/Helpers"
 echo "Directory structure created successfully"
 
+# ==========================================
+# HEALTH CHECK: Environment Validation
+# ==========================================
+echo "Running system environment health check..."
+
+# Verify if python3 is installed on the local system
+if python3 --version > /dev/null 2>&1; then
+    PYTHON_VERSION=$(python3 --version)
+    echo "[SUCCESS] python3 is installed: $PYTHON_VERSION"
+else
+    echo "[WARNING] python3 was not detected on this local system!"
+fi
+
+# Ensure the application directory structure is followed
+if [ -d "attendance_tracker_${user_input}/Helpers" ] && [ -d "attendance_tracker_${user_input}/reports" ]; then
+    echo "[SUCCESS] Application directory structure verified successfully."
+else
+    echo "[ERROR] Directory structure validation failed!"
+fi
+
 
 # ========================================
 # PHASE 2: Generating Application Files
