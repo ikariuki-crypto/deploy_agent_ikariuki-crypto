@@ -51,3 +51,5 @@ Once the script finishes completely, it will automatically create an audit repor
 Bash
 
 cat attendance_tracker_final/reports/reports.log
+
+You can watch the deployment pipeline presentation through here: https://drive.google.com/file/d/1gm8mTgDVVzx0lwTpyOSG48UKP7FrydlD/view?usp=sharing
